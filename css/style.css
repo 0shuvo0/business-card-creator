@@ -1,0 +1,139 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body{
+    height: 100%;
+}
+
+body{
+    background-color: #71A9F7;
+    font-family: 'Nunito', sans-serif;
+    padding: 0 3vw;
+}
+
+
+.container{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    height: 100%;
+}
+.col.preview{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5em;
+    padding: 3em;
+
+}
+
+.preview__content{
+    max-width: 100%;
+    border-radius: 1.25em;
+    overflow: hidden;
+    box-shadow: 0 25px 30px rgba(0,0,0,0.075), 0 10px 10px rgba(0,0,0,0.1);
+}
+.preview__content svg{
+    width: 100%;
+    display: block;
+    height: fit-content;
+}
+
+
+
+.btn{
+    display: inline-block;
+    padding: 1em 2em;
+    border-radius: 8px;
+    border: none;
+    outline: none;
+    font-weight: 700;
+    letter-spacing: 1px;
+    font-size: 14px;
+    text-decoration: none;
+    box-shadow: 0 20px 30px rgba(0,0,0,0.03), 0 10px 10px rgba(0,0,0,0.05);
+    cursor: pointer;
+    color: rgb(35, 35, 35);
+}
+.save-actions{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: .5em;
+    width: 100%;
+}
+.btn-save-svg{
+    background-color: #CAA7F3;
+}
+.btn-save-png{
+    background-color: #F08700;
+}
+.btn-create-new{
+    background-color: #44BBA4;
+    /* grid-column: span 2; */
+}
+
+
+
+.editor{
+    color: #fff;
+    padding: 3em;
+}
+.title{
+    font-size: 2em;
+    font-weight: 700;
+    margin-bottom: 1em;
+}
+
+
+.input{
+    border: none;
+    outline: none;
+    display: block;
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    border-radius: 5px;
+    padding: 0 1em;
+    background-color: rgba(255,255,255, 0.4);
+    color: #fff;
+    border: 2px solid rgba(255,255,255, 0.2);
+    font-size: 15px;
+}
+.input:focus{
+    border: 2px solid #fff;
+}
+.input::placeholder, .input .placeholder{
+    color: rgba(255,255,255, 0.7);
+}
+.mb-1{
+    margin-bottom: 1em;
+}
+input.file{
+    display: none;
+}
+.input.file-input:hover{
+    cursor: pointer;
+    background-color: rgba(255,255,255, 0.35);
+}
+.color-input{
+    position: relative;
+}
+.color-input input.color{
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+}
+
+.label{
+    display: block;
+    margin-bottom: 4px;
+    font-size: 14px;
+}

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;700;900&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.1/font/bootstrap-icons.min.css" integrity="sha512-oAvZuuYVzkcTc2dH5z1ZJup5OmSQ000qlfRvuoTTiyTBjwX1faoyearj8KdMq0LgsBTHMrRuMek7s+CxF8yE+w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="stylesheet" href="css/style.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <div class="col editor">
+            <p class="title">Edit card content</p>
+
+            <p class="label">Full name</p>
+            <input type="text" placeholder="Enter name" class="input name-input mb-1">
+
+            <p class="label">User designation</p>
+            <input type="text" placeholder="Enter designation" class="input designation-input mb-1">
+
+            <p class="label">Profile picture</p>
+            <label class="input file-input mb-1" for="dp-img">
+                <span class="placeholder">
+                    <i class="bi bi-card-image"></i>
+                    <span class="file-text">&nbsp;Select profile picture</span>
+                </span>
+                <input id="dp-img" type="file" accept="image/*" class="file dp-input">
+            </label>
+
+            <p class="label">Company logo</p>
+            <label class="input file-input mb-1" for="logo-img">
+                <span class="placeholder">
+                    <i class="bi bi-card-image"></i>
+                    <span class="file-text">&nbsp;Select company logo</span>
+                </span>
+                <input id="logo-img" type="file" accept="image/*" class="file logo-input">
+            </label>
+
+            <p class="label">Email address</p>
+            <input type="email" placeholder="Enter email" class="input email-input mb-1">
+
+            <p class="label">User address</p>
+            <input type="text" placeholder="Enter address" class="input address-input mb-1">
+
+            <p class="label">Primary color</p>
+            <label class="input color-input mb-1" for="primary-color">
+                <span class="placeholder">
+                    <span class="file-text">#71A9F7</span>
+                </span>
+                <input id="primary-color" type="color" class="color primary-color-input">
+            </label>
+
+            <p class="label">Secondary color</p>
+            <label class="input color-input" for="primary-color">
+                <span class="placeholder">
+                    <span class="file-text">#B5D4FF</span>
+                </span>
+                <input id="primary-color" type="color" class="color secondary-color-input">
+            </label>
+        </div>
+        
+        <div class="col preview">
+            <div class="preview__content"></div>
+            <div class="save-actions">
+                <button class="btn btn-save-svg">Save as SVG</button>
+                <button class="btn btn-save-png">Save as PNG</button>
+                <button class="btn btn-print-card">Print card</button>
+                <button class="btn btn-create-new">Create New</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/defaults.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
