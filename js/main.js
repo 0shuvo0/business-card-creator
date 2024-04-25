@@ -9,6 +9,11 @@ let generatedTemplate = ''
 
 function renderCard(data = defaultData){
     const template = `<svg width="1189" height="679" viewBox="0 0 1189 679" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    
+    
+    <style>
+    @import url("https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;700;900");
+    </style>
     <g id="Frame 1" clip-path="url(#clip0_1_2)">
     <rect width="1189" height="679" fill="white"/>
     <g id="ic:round-email">
@@ -77,10 +82,17 @@ function renderCard(data = defaultData){
     previewContainer.innerHTML = `<span>${template}</span>`
 }
 
-
-renderCard({
-    ...defaultData
-})
+async function init(){
+    const dp = await getBase64FromPath(defaultData.dp)
+    const logo = await getBase64FromPath(defaultData.logo, false)
+    defaultData.dp = dp
+    defaultData.logo = logo
+    renderCard({
+        ...defaultData
+    })
+    console.log(dp);
+}
+init()
 
 
 const fileInputs = $$('.file-input')
@@ -126,48 +138,59 @@ const addressInput = $('.address-input')
 const primaryColorInput = $('.primary-color-input')
 const secondaryColorInput = $('.secondary-color-input')
 
+
+async function  resolveImg(img, square, cb){
+    img.onload = () => {
+        const imgWidth = img.width
+        const imgHeight = img.height
+        const canvas = document.createElement('canvas')
+        const ctx = canvas.getContext('2d')
+        if(square){
+            const cropSize = Math.min(imgWidth, imgHeight)
+            canvas.width = cropSize
+            canvas.height = cropSize
+            ctx.drawImage(img, (imgWidth - cropSize) / 2, (imgHeight - cropSize) / 2, cropSize, cropSize, 0, 0, cropSize, cropSize)
+        }else{
+            canvas.width = imgWidth
+            canvas.height = imgHeight
+            ctx.drawImage(img, 0, 0, imgWidth, imgHeight)
+        }
+
+
+        cb(canvas.toDataURL('image/png'))
+
+    }
+}
+
 function getBase64(file, square = true){
     return new Promise((resolve, reject) => {
-        //crop img to 1:1
         const reader = new FileReader()
         reader.readAsDataURL(file)
         reader.onload = () => {
             const img = new Image()
             img.src = reader.result
-            img.onload = () => {
-                const imgWidth = img.width
-                const imgHeight = img.height
-                const canvas = document.createElement('canvas')
-                const ctx = canvas.getContext('2d')
 
-                // const cropSize = Math.min(imgWidth, imgHeight)
-                // canvas.width = cropSize
-                // canvas.height = cropSize
-                // ctx.drawImage(img, (imgWidth - cropSize) / 2, (imgHeight - cropSize) / 2, cropSize, cropSize, 0, 0, cropSize, cropSize)
-                
-                if(square){
-                    const cropSize = Math.min(imgWidth, imgHeight)
-                    canvas.width = cropSize
-                    canvas.height = cropSize
-                    ctx.drawImage(img, (imgWidth - cropSize) / 2, (imgHeight - cropSize) / 2, cropSize, cropSize, 0, 0, cropSize, cropSize)
-                }else{
-                    canvas.width = imgWidth
-                    canvas.height = imgHeight
-                    ctx.drawImage(img, 0, 0, imgWidth, imgHeight)
-                }
-
-
-                resolve(canvas.toDataURL('image/png'))
-
-            }
+            resolveImg(img, square, resolve)
         }
     })
 }
 
+function getBase64FromPath(path, square = true){
+    return new Promise((resolve, reject) => {
+        const img = new Image()
+        img.src = path
+        resolveImg(img, square, resolve)
+    })
+}
+
+
+
 const allInputs = [nameInput, designationInput, dpInput, logoInput, emailInput, addressInput, primaryColorInput, secondaryColorInput]
 allInputs.forEach(input => {
     input.addEventListener('input', async () => {
-        const data = {...defaultData}
+        const data = {
+            ...defaultData
+        }
 
         if(nameInput.value && nameInput.value.trim()) data.name = nameInput.value.trim()
         if(designationInput.value && designationInput.value.trim()) data.designation = designationInput.value.trim()
@@ -181,6 +204,8 @@ allInputs.forEach(input => {
         
         if(dpInput.files.length && dpInput.files[0]){
             data.dp = await getBase64(dpInput.files[0])
+        }else{
+
         }
 
         if(logoInput.files.length && logoInput.files[0]){
@@ -191,6 +216,7 @@ allInputs.forEach(input => {
     })
 
 })
+
 
 const saveSVGBtn = $('.btn-save-svg')
 saveSVGBtn.addEventListener('click', () => {
@@ -290,7 +316,7 @@ function cycleCards(){
         document.body.style.backgroundColor = colors[i % totalColors][0]
         i++
     }
-    const interval = setInterval(intervalFn, 750)
+    const interval = setInterval(intervalFn, 1500)
     window.addEventListener('click', () => clearInterval(interval))
 }
 cycleCards()

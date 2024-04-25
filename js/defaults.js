@@ -1,5 +1,5 @@
-const defaultDP = 'assets/default-dp.png'
-const defaultLogo = 'assets/default-logo.png'
+const defaultDP = './assets/default-dp.png'
+const defaultLogo = './assets/default-logo.png'
 
 const defaultData = {
     name: 'John Smith',
