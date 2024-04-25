@@ -291,6 +291,10 @@ createNewBtn.addEventListener('click', () => {
     renderCard()
 })
 
+
+
+
+
 const colors = [
     ['#72195A', '#421736'],
     ['#44BBA4', '#358D7C'],
