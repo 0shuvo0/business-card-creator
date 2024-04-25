@@ -8,9 +8,7 @@ let generatedTemplate = ''
 
 
 function renderCard(data = defaultData){
-    const template = `<svg width="1189" height="679" viewBox="0 0 1189 679" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    
-    
+    const template = `<svg width="1189" height="679" viewBox="0 0 1189 679" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"> 
     <style>
     @import url("https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;700;900");
     </style>

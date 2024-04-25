@@ -68,7 +68,6 @@ body{
 }
 .btn-save-svg{
     background-color: #CAA7F3;
-    grid-column: span 2;
 }
 .btn-save-png{
     background-color: #F08700;
